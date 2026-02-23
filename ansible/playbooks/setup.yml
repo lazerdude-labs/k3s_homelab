@@ -4,10 +4,7 @@
   gather_facts: true
   become: true
   roles:
-
     - role: raspberrypi
-#   - role: airgap
-#    - role: prereq
 
 - name: Setup K3S Server
   hosts: server
@@ -26,8 +23,5 @@
   become: true
   roles:
     - role: outside_cluster_tools
+
     
-#- name: Post-Install Tasks
-#  become: true
-#  roles:
-#    - role: post_install

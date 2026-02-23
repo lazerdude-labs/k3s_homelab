@@ -1,0 +1,5 @@
+- name: Replace old IP with master1 ip in k3s.yml
+  ansible.builtin.replace:
+    path: "{{ ansible_env.HOME }}/.kube/config"
+    regexp: '127.0.0.1'
+    replace: "{{ hostvars['master1']['ansible_host'] }}"

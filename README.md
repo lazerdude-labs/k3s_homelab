@@ -186,6 +186,7 @@ graph TD
 | `k3s_agent`  | Installs and configures agents |
 | `raspberrypi` | Identifies if there is any raspberry pi's as part of cluster |
 | `k3s_upgrade` | Upgrades the k3s cluster |
+| `outside_cluster_tools`| Installs helm and kubectl to control cluster from controller node |
 
 
 ---
@@ -194,7 +195,7 @@ graph TD
 
 ### Currently Deployed
 
-* *(Intentionally minimal — cluster-first approach)*
+* *nothing - See Future plan*
 
 ### Planned / Future Applications
 
@@ -202,8 +203,8 @@ These workloads are **planned**, but not yet fully implemented:
 
 | Application                    | Purpose                                             |
 | ------------------------------ | --------------------------------------------------- |
-| **Ingress Controller**         | Centralized HTTP/HTTPS routing (Traefik / NGINX)    |
-| **Monitoring Stack**           | Metrics & visibility (Prometheus + Grafana)         |
+| **Ingress Controller**         | Centralized HTTP/HTTPS routing (NGINX)    |
+| **Monitoring Stack**           | Metrics & visibility (TBD)         |
 | **Internal Services Platform** | Self-hosted tools (dokuwiki, dashboards, keycloak) |
 
 Each application will be deployed as **native Kubernetes manifests or Helm charts**, managed via Ansible.
@@ -229,11 +230,13 @@ sequenceDiagram
     participant Script
     participant Terraform
     participant Ansible
+    participant Helm
 
     User->>Script: deploy
     Script->>Terraform: apply
     Terraform->>Script: outputs
-    Script->>Ansible: bootstrap-k3s.yml
+    Script->>Ansible: setup.yml
+    User->>Helm: Helm Charts
 ```
 
 ### `destroy_infrastructure.sh`
@@ -265,11 +268,11 @@ Safely destroys all Terraform-managed infrastructure.
 ## 🛣️ Roadmap
 
 * Monitoring & alerting
-* Homelab Services (dokuwiki, keycloak, etc..)
-* CMU-SEI Crucible (down the line)
+* Homelab Services (wikijs, keycloak, etc..)
 
 ---
 
 ## ⚠️ Notes
 
 * Designed for learning, iteration, and controlled complexity.
+* K3s 1.31 is the current stable line. kubectl is at 1.35.1. Shows tolerance is +/-1 but kubectl is backwards compatible and still working.

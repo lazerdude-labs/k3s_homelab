@@ -1,0 +1,9 @@
+terraform/backend.tf
+.gitlab-ci.yml
+ansible/inventory.ini
+*.env
+*.key
+*.pem
+*.crt
+terraform/.tfstate
+terraform/.terraform

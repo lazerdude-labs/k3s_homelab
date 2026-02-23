@@ -11,10 +11,12 @@ Right now it supports RHEL and Debian/Ubuntu (should?). But if you run into Debi
 
 ## Prerequisites
 Hardware requirements: (All hardware requirements can beadjusted in terraform/main.tf and adjusted there for the time being)
+```
     Ram: 16 GB RAM (total)
     Disk: 360 GB (total)    
     Cores: 6 (total)
     Sockets 6 (total)
+```
 
 * **Notes** - If you have a different name for you datastore_id (mine is local-lvm) please change it in the main.tf. Please have uploaded your Rocky or Ubuntu (I'd ask you use rocky for first time but alas) into your proxmox. You will provide the location in the initialize cluster portion of setup.
 
@@ -24,22 +26,22 @@ The network vlan, ip addresses, dns, gateway for all devices you will set when y
 
 This repository first needs to be cloned and brought down to your local host for execution.
 
-'''
+```
 git clone <your-gitlab-url>
 cd <repo>
-'''
+```
 Repository Structure Overview:
-'''
+```
 /scripts/ # This is where all the scripts will be pulled from. You do not need anything from this folder
 /terraform/ # Where all the terraform infrustructure code is
 /ansible/ # Where the deployment for the infrustructure is
-'''
+```
 ## Being Installation
 
 Inside of the repository run
-'''
+```
 ./k3s_deployment.sh
-'''
+````
 
 When you run this it will check to see if you have a vault initialized. I have not accounted for if you already have one for other use cases. So for the is setup I'd say use a system that hasn't used vault. If you had vault but dont care about it feel free to run the ./scripts/reset_vault.sh script to reset your vault for a clean slate.
 
@@ -48,8 +50,8 @@ From here it will begin its entire installation of all the needed dependencies. 
 The next step is to go down in the deployment gui to initialize cluster. This initializes your vault variables. When doing the variables I will provide a list of what my inputs were so you don't mess up syntax because it will save whatever you put into it. If you do happen to do it wrong or question yourself (I have done it many times) go ahead and just exit and rerun it.
 
 Sample Inputs:
-'''
-    proxmox_username = root (if you do something other than root make sure permissions are good on that user)
+```
+    proxmox_username = root (can do other username if needed)
     proxmox_password = SuperSecurePassword123
     proxmox_endpoint = https://192.168.1.5:8006/
     proxmox_api_token_id = terraform@pam!terraform=ca.....
@@ -64,7 +66,7 @@ Sample Inputs:
     local_dns = 10.10.20.5
     ssh_public_key = (copied and pasted my literal public key into this)
     fqdn = rplab.lan
-'''
+```
 
 ## Deploying the Cluster
 

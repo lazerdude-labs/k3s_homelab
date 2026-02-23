@@ -1,22 +1,16 @@
-- name: Install kubectl
-  delegate_to: localhost
-  ansible.builtin.package:
-    name: 
-      - kubectl
-      - helm
-    state: present
-
 - name: Copy /etc/rancher/k3s/k3s.yaml to ~/.kube/config
-  copy:
+  fetch:
     src: /etc/rancher/k3s/k3s.yaml
     dest: ~/.kube/config
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+    flat: yes
     mode: '0600'
 
 - name: Replace old IP with master1 ip in k3s.yml
   delegate_to: localhost
+  become: false
   ansible.builtin.replace:
-  path: ~/.kube/config
-  regexp: '127.0.0.1'
-  replace: "{{ hostvars['master1']['ansible_host'] }}"
+    path: ~/.kube/config
+    regexp: '127.0.0.1'
+    replace: "{{ hostvars['master1']['ansible_host'] }}"
