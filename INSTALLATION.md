@@ -40,7 +40,7 @@ Repository Structure Overview:
 
 Inside of the repository run
 ```
-./k3s_deployment.sh
+./k3s_deployment.sh # Do not run SUDO!!! This will break
 ````
 
 When you run this it will check to see if you have a vault initialized. I have not accounted for if you already have one for other use cases. So for the is setup I'd say use a system that hasn't used vault. If you had vault but dont care about it feel free to run the ./scripts/reset_vault.sh script to reset your vault for a clean slate.

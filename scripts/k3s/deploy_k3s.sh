@@ -10,7 +10,7 @@ deploy_k3s_main() {
     if ! ansible-playbook -i inventory.ini playbooks/setup.yml; then
         whiptail --msgbox "Ansible reported an error. Check logs." 10 60
     fi
-
+    
     return 0
 }
 
