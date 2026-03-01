@@ -24,7 +24,7 @@ The design emphasizes **reproducibility, modularity, and future expansion** whil
 
 **Requirements** 
 * **Hypervisor** - Proxmox
-* **Controller** - OS with yum,dnf, or apt
+* **Controller** - OS with yum, dnf, or apt
 
 ---
 
@@ -184,9 +184,9 @@ graph TD
 | -------------- | ------------------------------------------- |
 | `k3s_server` | Installs and configures k3s server             |
 | `k3s_agent`  | Installs and configures agents |
-| `raspberrypi` | Identifies if there is any raspberry pi's as part of cluster |
+| `raspberrypi` | Identifies if there are any Raspberry Pis as part of the cluster |
 | `k3s_upgrade` | Upgrades the k3s cluster |
-| `outside_cluster_tools`| Installs helm and kubectl to control cluster from controller node |
+| `outside_cluster_tools` | Installs helm and kubectl to control the cluster from the controller node |
 
 
 ---
@@ -268,11 +268,11 @@ Safely destroys all Terraform-managed infrastructure.
 ## 🛣️ Roadmap
 
 * Monitoring & alerting
-* Homelab Services (wikijs, keycloak, etc..)
+* Homelab Services (wikijs, keycloak, etc.)
 
 ---
 
 ## ⚠️ Notes
 
 * Designed for learning, iteration, and controlled complexity.
-* K3s 1.31 is the current stable line. kubectl is at 1.35.1. Shows tolerance is +/-1 but kubectl is backwards compatible and still working.
+* K3s 1.31 is the current stable line. kubectl is at 1.35.1. Version skew tolerance is +/-1, but kubectl is backwards compatible and still working.
